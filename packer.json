@@ -1,0 +1,35 @@
+{
+    "builders": [{
+    "type": "amazon-ebs",    
+    "access_key": "AKIAI6YWZ6GJ5DGMIO6A",
+    "secret_key": "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",
+    "region": "us-west-2",
+    "source_ami_filter": {
+      "filters": {
+      "virtualization-type": "hvm",
+      "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+      "root-device-type": "ebs"
+      },
+      "owners": ["099720109477"],
+      "most_recent": true
+    },
+    "instance_type": "t2.micro",
+    "ssh_username": "ubuntu",
+    "ami_name": "petclinic-packer-example {{timestamp}}"
+  }],
+  "provisioners": [
+        {
+        "type": "shell",
+        "execute_command": "sudo -S -E bash '{{.Path}}'",
+        "script": "./ansible.sh"
+        },
+        {
+            "type": "ansible-local",
+            "playbook_file": "./petclinic.yml",
+            "playbook_dir" : ".",
+        }
+    ],
+   "post-processors" :[ 
+       
+   ] 
+}

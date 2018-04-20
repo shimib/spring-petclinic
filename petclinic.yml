@@ -1,0 +1,12 @@
+- hosts: all
+  tasks:
+  - name: install java
+    apt: 
+      name: java
+      state: latest
+    become: yes
+  - name: copy petclinic jar
+    copy:
+        src: ./target/*.jar
+        dest: /petclinic.jar
+
