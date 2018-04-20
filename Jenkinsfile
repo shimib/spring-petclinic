@@ -3,7 +3,7 @@ pipeline {
    tools {
        jdk "jdk8"
        maven "the_maven"
-       packer "packer"
+       biz.neustar.jenkins.plugins.packer.PackerInstallation "packer"
    }
    stages {
        stage("Build"){
