@@ -3,6 +3,7 @@ pipeline {
    tools {
        jdk "jdk8"
        maven "the_maven"
+       packer "packer"
    }
    stages {
        stage("Build"){
